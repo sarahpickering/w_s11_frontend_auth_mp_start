@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function StarsList() {
   const [stars, setStars] = useState([])
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    navigate('/')
+  }
+
   return (
     <div className="container">
-      <h3>StarsList <button>Logout</button></h3>
+      <h3>StarsList <button onClick={logout}>Logout</button></h3>
       {stars.length > 0 ? (
         <div>
           {stars.map((star) => (
